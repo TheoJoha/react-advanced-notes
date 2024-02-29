@@ -1,0 +1,1 @@
+This is a note taking app with special features.
