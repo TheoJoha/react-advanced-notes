@@ -13,7 +13,7 @@ function App() {
   const [title, setTitle] = useState("")
   const [content, setContent] = useState("")
   const [selectedNote, setSelectedNote] = useState<Note | null>(null)
-  const [search, setSearch] = useState("")
+  const [searchTitle, setSearchTitle] = useState("")
 
   useEffect(() => {
     const fetchNotes = async () => {
@@ -166,13 +166,13 @@ function App() {
         }
       </form>
       <div className="search-and-sort-functionality">
-        <input value={search} onChange={(e) => setSearch(e.target.value)} placeholder="Search by..." />
+        <input value={searchTitle} onChange={(e) => setSearchTitle(e.target.value)} placeholder="Search by..." />
         <div className="notes-info">
           {notes.length ? (`Number of notes: ${notes.length}`) : ""}
         </div>
       </div>
       <div className="notes-grid">
-        {notes.map((note) => (
+        {notes.filter(note => searchTitle === "" ? note : note.title.includes(searchTitle) ? note : "").map((note) => (
           <div
             key={note.id}
             className="note-item"
