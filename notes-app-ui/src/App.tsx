@@ -19,6 +19,7 @@ function App() {
   const [priority, setPriority] = useState("low")
   const [timeEstimate, setTimeEstimate] = useState(0)
   const [completed, setCompleted] = useState(false)
+  const [sortOnPriority, setSortOnPriority] = useState(false)
 
   useEffect(() => {
     const fetchNotes = async () => {
@@ -160,6 +161,20 @@ function App() {
     return;
   }
 
+  const handleSortOnPriority = () => {
+    setNotes(prev => {
+
+      let tempCopy: Note[] = [];
+      const lowPrios: Note[] = prev.filter(note => note.priority === "low")
+      const mediumPrios: Note[] = prev.filter(note => note.priority === "medium")
+      const highPrios: Note[] = prev.filter(note => note.priority === "high")
+      const criticalPrios: Note[] = prev.filter(note => note.priority === "critical")
+      tempCopy = [...criticalPrios, ...highPrios, ...mediumPrios, ...lowPrios]
+
+      return tempCopy
+    })
+  }
+
 
   return (
     <div className="app-container">
@@ -261,7 +276,7 @@ function App() {
             {notes.length ? (`Number of notes: ${notes.length}`) : ""}
           </div>
           <div className="sort-functionality">
-
+            <button type="button" id="priority-sorting-button" value="false" onClick={handleSortOnPriority} >{sortOnPriority ? "Stop sorting on priority" : " Sort on priority"}</button>
           </div>
         </div>
       </div>
