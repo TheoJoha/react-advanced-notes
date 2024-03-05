@@ -15,7 +15,7 @@ app.get("/api/notes", async (req, res) => {
 })
 
 app.post("/api/notes", async (req, res) => {
-    const {title, content} = req.body
+    const {title, content, priority, timeEstimate, completed} = req.body
 
     if (!title || !content) {
         return res
@@ -25,7 +25,7 @@ app.post("/api/notes", async (req, res) => {
 
     try {
         const note = await prisma.note.create({
-            data: {title, content},
+            data: {title, content, priority, timeEstimate, completed},
         })
         res.json(note)
     } catch (error) {
@@ -33,11 +33,10 @@ app.post("/api/notes", async (req, res) => {
             .status(500)
             .send("Oops something went wrong")
     }
-
 })
 
 app.put("/api/notes/:id", async (req, res) => {
-    const {title, content} = req.body
+    const {title, content, priority, timeEstimate, completed} = req.body
     const id = parseInt(req.params.id)
 
     if (!title || !content) {
@@ -55,7 +54,7 @@ app.put("/api/notes/:id", async (req, res) => {
     try {
         const updatedNote = await prisma.note.update({
             where: {id},
-            data: {title, content}
+            data: {title, content, priority, timeEstimate, completed}
         })
         res.json(updatedNote)
     } catch (error) {

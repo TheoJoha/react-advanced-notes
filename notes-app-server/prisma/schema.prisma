@@ -14,7 +14,10 @@ datasource db {
 }
 
 model Note {
-  id      Int @id @default(autoincrement())
-  title   String
-  content String
+  id            Int @id @default(autoincrement())
+  title         String
+  content       String
+  priority      String
+  timeEstimate  Int
+  completed     Boolean @default(false)
 }
