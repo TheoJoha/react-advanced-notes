@@ -36,6 +36,13 @@ body {
   cursor: pointer;
 }
 
+#note-item-priority,
+#note-item-estimated-time,
+#note-item-completed {
+  font-size: 0.8rem;
+  margin: 2px;
+}
+
 .notes-header {
   display: flex;
   justify-content: flex-end;
@@ -53,10 +60,15 @@ h2 {
   margin: 0;
 }
 
+.functionality-container {
+  border: solid 1px black;
+}
+
 .note-form {
   display: flex;
   flex-direction: column;
   gap: 20px;
+  border: solid 1px black;
 }
 
 textarea, 

@@ -163,102 +163,106 @@ function App() {
 
   return (
     <div className="app-container">
-      <form className="note-form"
-        onSubmit={(e: React.FormEvent<HTMLFormElement>) => selectedNote ? handleUpdateNote(e) : handleAddNote(e)}
-      >
-        <input
-          placeholder="Title"
-          required
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
-        />
-        <textarea
-          placeholder="Content"
-          rows={10}
-          required
-          value={content}
-          onChange={(e) => setContent(e.target.value)}
-        ></textarea>
-        <div className="priority-buttons">
-          <label htmlFor="low">Low</label>
+      <div className="functionality-container">
+        <form className="note-form"
+          onSubmit={(e: React.FormEvent<HTMLFormElement>) => selectedNote ? handleUpdateNote(e) : handleAddNote(e)}
+        >
           <input
-            id="low"
-            value="low"
-            name="priority"
-            type="radio"
-            defaultChecked
-            onChange={(e) => setPriority(e.target.value)}
+            placeholder="Title"
+            required
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
           />
-          <label htmlFor="medium">Medium</label>
-          <input
-            id="medium"
-            value="medium"
-            name="priority"
-            type="radio"
-            onChange={(e) => setPriority(e.target.value)}
-          />
-          <label htmlFor="high">High</label>
-          <input
-            id="high"
-            value="high"
-            name="priority"
-            type="radio"
-            onChange={(e) => setPriority(e.target.value)}
-          />
-          <label htmlFor="critical">Critical</label>
-          <input
-            id="critical"
-            value="critical"
-            name="priority"
-            type="radio"
-            onChange={(e) => setPriority(e.target.value)}
-          />
-        </div>
-        <div className="timeEstimate">
-          <label htmlFor="timeEstimate">Time Estimate</label>
-          <input
-            id="timeEstimate"
-            placeholder="Time estimate"
-            value={timeEstimate}
-            onChange={(e) => setTimeEstimate(Number(e.target.value))}
-          />
-        </div>
-        <div className="completed">
-          <label htmlFor="isCompleted">Completed</label>
-          <input
-            id="isCompleted"
-            value="true"
-            name="completed"
-            type="radio"
-            onChange={() => setCompleted(true)}
-          />
-          <br />
-          <label htmlFor="isNotCompleted">Not completed</label>
-          <input
-            id="isNotCompleted"
-            value="false"
-            defaultChecked
-            name="completed"
-            type="radio"
-            onChange={() => setCompleted(false)}
-          />
-        </div>
+          <textarea
+            placeholder="Content"
+            rows={10}
+            required
+            value={content}
+            onChange={(e) => setContent(e.target.value)}
+          ></textarea>
+          <div className="priority-buttons">
+            <label htmlFor="low">Low</label>
+            <input
+              id="low"
+              value="low"
+              name="priority"
+              type="radio"
+              defaultChecked
+              onChange={(e) => setPriority(e.target.value)}
+            />
+            <label htmlFor="medium">Medium</label>
+            <input
+              id="medium"
+              value="medium"
+              name="priority"
+              type="radio"
+              onChange={(e) => setPriority(e.target.value)}
+            />
+            <label htmlFor="high">High</label>
+            <input
+              id="high"
+              value="high"
+              name="priority"
+              type="radio"
+              onChange={(e) => setPriority(e.target.value)}
+            />
+            <label htmlFor="critical">Critical</label>
+            <input
+              id="critical"
+              value="critical"
+              name="priority"
+              type="radio"
+              onChange={(e) => setPriority(e.target.value)}
+            />
+          </div>
+          <div className="timeEstimate">
+            <label htmlFor="timeEstimate">Time Estimate</label>
+            <input
+              id="timeEstimate"
+              value={timeEstimate}
+              onChange={(e) => setTimeEstimate(Number(e.target.value))}
+            />
+          </div>
+          <div className="completed">
+            <label htmlFor="isCompleted">Completed</label>
+            <input
+              id="isCompleted"
+              value="true"
+              name="completed"
+              type="radio"
+              onChange={() => setCompleted(true)}
+            />
+            <br />
+            <label htmlFor="isNotCompleted">Not completed</label>
+            <input
+              id="isNotCompleted"
+              value="false"
+              defaultChecked
+              name="completed"
+              type="radio"
+              onChange={() => setCompleted(false)}
+            />
+          </div>
 
-        {
-    selectedNote ? (
-      <div className="edit-buttons">
-        <button type="submit">Save</button>
-        <button onClick={handleCancel}>Cancel</button>
-      </div>
-    ) : (
-      <button type="submit">Add Note</button>
-    )
-  }
-      </form >
-      <div className="search-and-sort-functionality">
-        <input value={searchTitle} onChange={(e) => setSearchTitle(e.target.value)} placeholder="Search by..." />
-        <div className="notes-info">
-          {notes.length ? (`Number of notes: ${notes.length}`) : ""}
+          {
+            selectedNote ? (
+              <div className="edit-buttons">
+                <button type="submit">Save</button>
+                <button onClick={handleCancel}>Cancel</button>
+              </div>
+            ) : (
+              <button type="submit">Add Note</button>
+            )
+          }
+        </form >
+        <div className="search-and-sort-functionality">
+          <input value={searchTitle} onChange={(e) => setSearchTitle(e.target.value)} placeholder="Search by..." />
+          <div className="notes-info">
+            {notes.length ? (`Number of notes: ${notes.length}`) : ""}
+          </div>
+          <div className="sort-functionality">
+
+          </div>
         </div>
       </div>
       <div className="notes-grid">
@@ -275,9 +279,9 @@ function App() {
             </div>
             <h2>{note.title}</h2>
             <p>{note.content}</p>
-            <p>Priority: {note.priority}</p>
-            <p>Time Estimate: {note.timeEstimate}</p>
-            <p>{note.completed}</p>
+            <p id ="note-item-priority">Priority: {note.priority}</p>
+            <p id="note-item-estimated-time">Time Estimate: {note.timeEstimate}</p>
+            <p id="note-item-completed">{note.completed ? "Is completed" : "Is not completed"}</p>
           </div>
         ))}
 
